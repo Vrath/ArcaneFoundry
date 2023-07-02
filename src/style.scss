@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Germania+One&family=Roboto+Mono&family=Titillium+Web:ital,wght@0,400;0,700;1,400&display=swap');
+
+$bgcolor: #2a2a2a;
+$textcolor: #f5f5f5;
+$highlight: #00e48c;
+$main-font: 'Titillium Web', sans-serif;
+$deco-font: 'Germania One', cursive;
+$monospace: 'Roboto Mono';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: default;
+  // border: 1px dotted blue;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  color: $textcolor;
+  background-color: $bgcolor;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 24px;
+  user-select: none;
+  text-shadow: 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black, -1px -1px 0 black;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+#app {
+  height: 100vh;
+  height: -webkit-fill-available;
+  
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  display: grid;
+  grid-template-columns: 3fr 12fr 5fr;
+}
+
+::-webkit-scrollbar{
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 5px;
+  visibility: hidden;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+// SIDEBAR
+#sidebar{
+  min-height: 100vh;
+  max-height: 100vh;
+  font-family: $deco-font;
+
+  #logo{
+    background-color: #333;
+    min-height: 64px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #454545;
+    box-shadow: black 0 0 5px, #555 inset 0 0 2px;
+    display: none;
+
+    h1{
+      text-align: center;
+      font-size: 40px;
+      text-shadow: 2px 2px 1px black, -2px 2px 1px black, 2px -2px 1px black, -2px -2px 1px black;
+    }
+  }
+ 
+  #sidebarMenu{
+    padding-top: 10px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    
+    a{
+      text-decoration: none;
+      color: $textcolor;
+      text-align: center;
+      transition: 0.5s;
+      padding: 5px;
+    }
+    a:hover,.active{
+      color: $highlight;
+      transform: scale(1.5);
+      cursor: pointer;
+      transition: 0.5s;
+    }
+  }
+  
+}
+
+// @media only screen and (max-width: 1720px) {
+//  #sidebar{
+//     #logo{
+//       height: 120px;
+//     }
+//     #sidebarMenu{
+//       height: calc(100vh - 120px);
+//     }
+//   }
+// }
+
+// MAIN AREA
+#main{
+  padding: 10px;
+  background-color: #222;
+  border-left: 1px #454545 solid;
+  border-right: 1px #454545 solid;
+  box-shadow: black inset 0 0 10px;
+  height: 100vh;
+  overflow-y: auto;
+}
+.center-stuff{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  min-height: 20vh;
+  gap: 20px;
+  padding: 20px;
+}
+.btn{
+  min-height: 80px;
+  min-width: 160px;
+  font-family: $main-font;
+  font-size: 24px;
+  color: $textcolor;
+  background-color: $bgcolor;
+  border: 1px solid #454545;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 20px 60px 20px 60px;
+  transition: 0.5s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 1),  rgba(85, 85, 85, 0.5) inset 1px 1px 2px;
+  .cost{
+    font-size: 16px;
+    text-align: right;
+  }
+}
+.btn:hover{
+  color: $highlight;
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+// INFOPANEL
+#info{
+  padding: 10px;
+}
+//etc
+.decorated{
+  overflow: hidden;
+  text-align: center;
+  font-family: $deco-font;
+}
+.decorated > span{
+ position: relative;
+ display: inline-block;
+}
+.decorated > span:before, .decorated > span:after{
+ content: '';
+ position: absolute;
+ top: 50%;
+ border-bottom: 2px solid;
+ width: 100vw;
+ margin: 0 20px;
+}
+.decorated > span:before{
+ right: 100%;
+}
+.decorated > span:after{
+ left: 100%;
+}
