@@ -1,11 +1,10 @@
-<script setup lang="ts"> 
+<script setup> 
 
 </script>
 <template>
+  <!-- <h2 class="decorated"><span>production</span></h2> -->
   <div class="center-stuff">
-    <button onclick="">
-      test
-    </button>
+    
   </div>
 </template>
 <script lang="ts">

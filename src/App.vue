@@ -1,16 +1,26 @@
 <script setup>
 import { ref } from 'vue'
+import {runtime, conjureClay} from './scripts/gameCore.js'
+import {nFormatter} from "./scripts/util.js";
+import {resources} from "./scripts/resources.js"
+
 
 import Buildings from './tabs/Buildings.vue'
-import Actions from './tabs/Actions.vue'
+import Foundry from './tabs/Foundry.vue'
+
+// import Quests from './tabs/Quests.vue'
+// import Settings from './tabs/Settings.vue' 
 
 
-const currentTab = ref("Actions");
+const currentTab = "Buildings";
 
-const nav = ref([
-  {name: "Actions", component: Actions},
-  {name: "Buildings", component: Buildings}
-]) 
+const nav = [
+  {name: "Buildings", component: Buildings},
+  {name: "Foundry", component: Foundry},
+  // ...
+  // {name: "Quests", component: Quests},
+  // {name: "Settings", component: Settings}
+]
 
 
 </script>
@@ -33,16 +43,31 @@ const nav = ref([
 
   <div id="main">
     <div style="width=100%;" v-for="tab in nav" :key="tab.name" v-show="currentTab == tab.name">
-      
       <component :is="tab.component"></component>
     </div>
   </div>
 
-
   <div id="info">
     <h2 class="decorated"><span>resources</span></h2>
-    mana: {{ data.resources.mana.amount }} / {{ runtime.resources.mana.max }}<br>
-    clay: {{ data.resources.clay.amount }} / {{ runtime.resources.clay.max }}
+    <table class="resTable">
+      <tr v-for="r in resources">
+        <td class="resName">
+          {{ r.name }}: 
+        </td>
+        <td class="resAmt">
+          {{ nFormatter(runtime.resources[r.id].amount) }}
+        </td>
+        <td class="resSlash">
+          /
+        </td>
+        <td class="resMax">
+          {{ nFormatter(runtime.resources[r.id].max) }}
+        </td>
+      </tr>
+    </table>
+    <button @click="conjureClay()">
+      Conjure clay<br>(cost: 1 mana)
+    </button>
   </div>
 </template>
 

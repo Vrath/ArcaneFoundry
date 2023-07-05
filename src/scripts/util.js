@@ -1,7 +1,13 @@
 //number formatter
 export function nFormatter(num, digits) {
   if (num < 1){
+    return parseFloat(num.toFixed(3));
+  }
+  else if (num < 10){
     return parseFloat(num.toFixed(2));
+  }
+  else if (num < 100){
+    return parseFloat(num.toFixed(1));
   }
   else {
     const lookup = [
@@ -31,10 +37,13 @@ export function percentify(val1, val2){
 
 
 // merge data
-function merge(a,b) {
-  if (typeof a === 'object') {
-    for(k in a) { a[k] = { merge(a[k],b[k]) } }
-  } else {
-    a = b??a
+export function merge(a,b) {
+  for (k in a) {
+      if (typeof a[k] === 'object') {
+          merge(a[k], b?.[k])
+      }
+      else {
+          a[k] = b?.[k] ?? a[k]
+      }
   }
 }
