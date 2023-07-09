@@ -1,12 +1,13 @@
 <script setup>
-import { ref } from 'vue'
-import {runtime, conjureClay} from './scripts/gameCore.js'
+import { markRaw, ref } from 'vue'
+import {runtime, conjureClay, reset} from './scripts/gameCore.js'
 import {nFormatter} from "./scripts/util.js";
 import {resources} from "./scripts/resources.js"
 
 
 import Buildings from './tabs/Buildings.vue'
 import Foundry from './tabs/Foundry.vue'
+import Workers from './tabs/Workers.vue'
 
 // import Quests from './tabs/Quests.vue'
 // import Settings from './tabs/Settings.vue' 
@@ -14,13 +15,14 @@ import Foundry from './tabs/Foundry.vue'
 
 const currentTab = "Buildings";
 
-const nav = [
+const nav = markRaw([
   {name: "Buildings", component: Buildings},
   {name: "Foundry", component: Foundry},
+  {name: "Workers", component: Workers}
   // ...
   // {name: "Quests", component: Quests},
   // {name: "Settings", component: Settings}
-]
+])
 
 
 </script>
@@ -37,6 +39,7 @@ const nav = [
       :class="currentTab == tab.name ? 'active' : ''">
         {{ tab.name }}
       </a>
+      <a @click="reset();">Reset</a>
     </div>
   </div>
 
@@ -55,13 +58,16 @@ const nav = [
           {{ r.name }}: 
         </td>
         <td class="resAmt">
-          {{ nFormatter(runtime.resources[r.id].amount) }}
+          {{ nFormatter(runtime.resources[r.id].amount, 2) }}
         </td>
         <td class="resSlash">
           /
         </td>
         <td class="resMax">
-          {{ nFormatter(runtime.resources[r.id].max) }}
+          {{ nFormatter(runtime.resources[r.id].max,2) }}
+        </td>
+        <td class="resProd">
+          ({{ nFormatter(runtime.resources[r.id].production) }}/s)
         </td>
       </tr>
     </table>

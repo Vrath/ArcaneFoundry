@@ -10,8 +10,9 @@ import {golemTypes} from '../scripts/foundry.js'
         <h2 class="card-title">
           {{ g.displayName }} 
         </h2>
-
-        
+        <p class="card-text">
+          
+        </p>
       </div>
       
 

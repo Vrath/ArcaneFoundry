@@ -14,9 +14,9 @@ import { resources } from '../scripts/resources.js';
          <table style="width: 100%">
           <tr>
             <td>
-              <h2 class="card-title" style="text-align: left;">
+              <h2 class="card-title">
                 {{ b.name }} 
-               </h2>
+              </h2>
             </td>
             <td style="font-size: 16px; text-align:right;">
               level {{ runtime.buildings[b.id] }}
@@ -41,11 +41,6 @@ import { resources } from '../scripts/resources.js';
    </div>
   </div>
 </template>
-<script lang="ts">
-
-
-
-</script>
 <style lang="">
   
 </style>

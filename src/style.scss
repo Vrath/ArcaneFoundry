@@ -183,17 +183,27 @@ img {
   font-size: 17px;
   .resName{
     min-width: 40px;
+    width: 100%;
   }
   .resAmt{
-    min-width:40px;
-    font-family: "Roboto Mono"
+    min-width: 60px;
+    font-family: "Roboto Mono";
   }
   .resMax{
-    min-width: 10px;
+    min-width: 40px;
+    width: 0px;
     font-family: "Roboto Mono"
   }
   .resSlash{
-    width: 0px;
+    min-width: 10px;
+    text-align:center;
+  }
+  .resProd{
+    font-family: "Roboto Mono";
+    font-size: 12px;
+    color:#aaa;
+    min-width: 20px;
+    text-align: right;
   }
 }
 //etc
