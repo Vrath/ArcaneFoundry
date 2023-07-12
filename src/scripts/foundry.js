@@ -1,30 +1,32 @@
 "use strict";
 
+import { payIfPossible, runtime } from "./gameCore.js";
+
 export const golemTypes = {
   clay: {
     type: "clay",
     displayName: "Clay Golem",
     desc: "Clay golems are easy to make and dexterous, but also very fragile.",
-    upkeep: 0.5,
+    upkeep: 1,
     power: 5
   },
   wood: {
     type: "wood",
     displayName: "Wood Golem",
     desc: "Wood golems are well balanced between their toughness, strength, and ease of control.",
-    upkeep: 1,
-    power: 12
+    upkeep: 1.5,
+    power: 8
   },
   stone: {
     type: "stone",
     displayName: "Stone Golem",
     desc: "Stone golems are tough and sturdy, but pretty slow.",
     upkeep: 2,
-    power: 25
+    power: 12
   }
 }
 
-function createGolem(type){
+export function createGolem(type){
   if (payIfPossible(getGolemCost(type))){
     runtime.value.golems[type].amount++;
     runtime.value.golems.total++;
@@ -32,21 +34,21 @@ function createGolem(type){
 }
 
 export function getGolemCost(type){
-  let amount = gameData.golems.type[type].amount + 1;
+  let amount = runtime.value.golems[type].amount + 1;
 
   const resources = [];
   switch (type) {
     case 'clay':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(5 * Math.pow(amount, 1.43))});
-      resources.push({'resource': 'clay', 'amount': Math.ceil(10 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(5 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'clay', 'amount': Math.ceil(5 * Math.pow(amount, 2.23))});
     break;
     case 'wood':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(15 * Math.pow(amount, 1.43))});
-      resources.push({'resource': 'wood', 'amount': Math.ceil(15 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(10 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'wood', 'amount': Math.ceil(20 * Math.pow(amount, 2.23))});
     break;
     case 'stone':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(40 * Math.pow(amount, 1.43))});
-      resources.push({'resource': 'stone', 'amount': Math.ceil(20 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(15 * Math.pow(amount, 1.73))});
+      resources.push({'resource': 'stone', 'amount': Math.ceil(35 * Math.pow(amount, 2.23))});
     break;
   }
   return resources;

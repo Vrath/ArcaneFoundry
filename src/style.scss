@@ -41,9 +41,12 @@ html {
   display: grid;
   grid-template-columns: 3fr 12fr 5fr;
 }
+button{
+  padding: 2px;
+}
 
 ::-webkit-scrollbar{
-  width: 7px;
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: #444;
@@ -94,6 +97,7 @@ img {
     gap: 10px;
     display: flex;
     flex-direction: column;
+    padding: 20px;
     
     a{
       text-decoration: none;
@@ -125,14 +129,37 @@ img {
 
 // MAIN AREA
 #main{
-  padding: 10px;
   background-color: #222;
-  border-left: 1px #454545 solid;
-  border-right: 1px #454545 solid;
-  box-shadow: black inset 0 0 10px;
   height: 100vh;
-  overflow-y: auto;
+  .topbar {
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+    width: 100%;
+    top: 0px;
+    background: #2a2a2a;
+    .multipliers {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      button{
+        height: 25px;
+        width: 40px;
+      }
+    }
+  }
+  .tabContent{
+    overflow-y: auto;
+    height: calc(100vh - 40px);
+    box-shadow: black inset 0 0 10px;
+    border-left: 1px #454545 solid;
+    border-right: 1px #454545 solid;
+    border-top: 1px #454545 solid;
+  }
 }
+
 .center-stuff{
   --max-columns: 3; /* specifies the maximum number of columns allowed */
   --gutter-size: 1rem; /* specifies the size of the gap between the rows and columns */
@@ -231,11 +258,12 @@ img {
  left: 100%;
 }
 
-//buildingcard
+//card
 .card {
   display: flex;
   flex-direction: column;
   background-color: #333;
+  border: 1px solid #454545;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   flex-grow: 0; /* the items cannot claim more space in the row than their initial width */
@@ -243,12 +271,12 @@ img {
   flex-basis: calc(100% / var(--max-columns) - var(--gutter-size)); /* this calculation gives us the exact percentage width we need for everything to fit */
 }
 @media only screen and (max-width:1400px) {
-  .card {
+  .center-stuff {
     --max-columns: 2;
   }    
 }
 @media only screen and (max-width:960px) {
-  .card {
+  .center-stuff {
     --max-columns: 1;
   }    
 }
@@ -258,15 +286,22 @@ img {
   background-size: cover;
   border-radius: 10px 10px 0 0;
 }
-.card-content { padding: 20px;}
+.card-content {
+  padding: 20px;
+  font-size: 1rem;
+}
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   margin: 0 0 10px 0;
 }
 .card-text { 
-  font-size: 1rem; margin: 0; 
-  ul{
-    padding-left: 20px;
-  }
+  margin: 0;
+  height: 80px;
+  overflow-y: auto;
+  font-style: italic;
+}
+.resourcesPlz{
+  display: grid;
+  grid-template-columns: 50% 50%;
 }

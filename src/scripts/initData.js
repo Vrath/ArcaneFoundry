@@ -5,7 +5,7 @@ export const initData = {
     mana: {
       amount: 10,
       max: 10,
-      production: 1
+      production: 1,
     },
     clay: {
       amount: 0,
@@ -38,8 +38,6 @@ export const initData = {
       }
     },
     research: {
-      amount: 0,
-      max: 0,
       production: 0,
       workers: {
         clay: 0,

@@ -5,7 +5,6 @@ import { resources } from '../scripts/resources.js';
 
 </script>
 <template>
-  <!-- <h2 class="decorated"><span>production</span></h2> -->
   <div class="center-stuff">
     <div class="card" v-for="b in buildings">
       <!-- <div class="card-image"> </div> -->
@@ -26,16 +25,17 @@ import { resources } from '../scripts/resources.js';
         
          <p class="card-text">
           {{ b.desc }}
-         </p>
+        </p>
 
          <button style="float: right; display: inline;" @click="upgradeBuilding(b.id)">Upgrade</button>
 
-         <p class="card-text">
           Resources required:<br>
+          <div class="resourcesPlz">
             <span v-for="r in getBuildingUpgradeCost(b.id)">
               {{ r.resource }}: {{ r.amount }}<br>
             </span>
-         </p>
+          </div>
+        
 
       </div>
    </div>

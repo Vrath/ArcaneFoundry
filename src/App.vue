@@ -43,9 +43,19 @@ const nav = markRaw([
     </div>
   </div>
 
-
   <div id="main">
-    <div style="width=100%;" v-for="tab in nav" :key="tab.name" v-show="currentTab == tab.name">
+    <div class="topbar">
+
+      <div class="multipliers" v-show="currentTab == 'Workers'">
+        <span>Multiplier:</span>
+        <button @click="setWorkerAmount(1)">x1</button>
+        <button @click="setWorkerAmount(5)">x5</button>
+        <button @click="setWorkerAmount(25)">x25</button>
+        <button @click="setWorkerAmount(100)">x100</button>
+      </div>
+
+    </div>
+    <div class="tabContent" style="width=100%;" v-for="tab in nav" :key="tab.name" v-show="currentTab == tab.name">
       <component :is="tab.component"></component>
     </div>
   </div>
@@ -53,24 +63,27 @@ const nav = markRaw([
   <div id="info">
     <h2 class="decorated"><span>resources</span></h2>
     <table class="resTable">
-      <tr v-for="r in resources">
-        <td class="resName">
-          {{ r.name }}: 
-        </td>
-        <td class="resAmt">
-          {{ nFormatter(runtime.resources[r.id].amount, 2) }}
-        </td>
-        <td class="resSlash">
-          /
-        </td>
-        <td class="resMax">
-          {{ nFormatter(runtime.resources[r.id].max,2) }}
-        </td>
-        <td class="resProd">
-          ({{ nFormatter(runtime.resources[r.id].production) }}/s)
-        </td>
-      </tr>
+      <template v-for="r in resources">
+        <tr v-if="r.id != 'research' && runtime.resources[r.id].max != 0" >
+          <td class="resName" >
+            {{ r.name }}: 
+          </td>
+          <td class="resAmt" >
+            {{ nFormatter(runtime.resources[r.id].amount, 2) }}
+          </td>
+          <td class="resSlash" >
+            /
+          </td>
+          <td class="resMax" >
+            {{ nFormatter(runtime.resources[r.id].max, 2) }}
+          </td>
+          <td class="resProd" >
+            ({{ nFormatter(runtime.resources[r.id].production) }}/s)
+          </td>
+        </tr>
+      </template>
     </table>
+    
     <button @click="conjureClay()">
       Conjure clay<br>(cost: 1 mana)
     </button>

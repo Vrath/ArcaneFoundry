@@ -38,20 +38,21 @@ let gameLoop = window.setInterval(function(){
   let rate = delta / 1000
   last = now
   
-  //calculating resource production and max values
+  //calculating max workers, resource production, and max storage
   Object.values(resources).forEach(r =>{
     switch (r.id){
       case 'mana':
-        runtime.value.resources.mana.production = Math.ceil(0.1+Math.pow(runtime.value.buildings.manaWell, 1.13))
+        // runtime.value.resources.mana.production = Math.ceil(0.1+Math.pow(runtime.value.buildings.manaWell, 1.13))
+
         runtime.value.resources.mana.max = 10*Math.round(Math.pow(1+runtime.value.buildings.manaTower, 1.23))
       break;
       case 'clay':
-        runtime.value.resources.clay.production = Math.round(Math.pow(runtime.value.buildings.clayDeposits, 1.43))
-        runtime.value.resources.clay.max = 10*Math.round(Math.pow(1+runtime.value.buildings.clayStorage, 1.75))
+        // runtime.value.resources.clay.production = Math.round(Math.pow(runtime.value.buildings.clayDeposits, 1.43))
+        runtime.value.resources.clay.max = 10*Math.round(Math.pow(1+runtime.value.buildings.clayStorage, 1.73))
       break;
       default:
-        runtime.value.resources[r.id].production = Math.round(Math.pow(runtime.value.buildings[r.productionBuilding], 1.43))
-        runtime.value.resources[r.id].max = 10*Math.round(Math.pow(runtime.value.buildings[r.storageBuilding], 1.75))
+        // runtime.value.resources[r.id].production = Math.round(Math.pow(runtime.value.buildings[r.productionBuilding], 1.43))
+        runtime.value.resources[r.id].max = 10*Math.round(Math.pow(runtime.value.buildings[r.storageBuilding], 1.73))
       break;
     }
   })
