@@ -11,6 +11,9 @@ export const initData = {
       amount: 0,
       max: 10,
       production: 0,
+      workerPower: 0,
+      maxWorkers: 0,
+      hiredWorkers: 0,
       workers: {
         clay: 0,
         wood: 0,
@@ -21,6 +24,9 @@ export const initData = {
       amount: 0,
       max: 0,
       production: 0,
+      workerPower: 0,
+      maxWorkers: 0,
+      hiredWorkers: 0,
       workers: {
         clay: 0,
         wood: 0,
@@ -31,6 +37,9 @@ export const initData = {
       amount: 0,
       max: 0,
       production: 0,
+      workerPower: 0,
+      maxWorkers: 0,
+      hiredWorkers: 0,
       workers: {
         clay: 0,
         wood: 0,
@@ -39,6 +48,9 @@ export const initData = {
     },
     research: {
       production: 0,
+      workerPower: 0,
+      maxWorkers: 0,
+      hiredWorkers: 0,
       workers: {
         clay: 0,
         wood: 0,
@@ -48,15 +60,13 @@ export const initData = {
   },
   buildings: {
     foundry: 0,
+    clayDeposits: 0,
     manaTower: 0,
     manaWell: 0,
-    clayStorage: 0,
-    clayDeposits: 0,
-    woodShed: 0,
     lumberjacksHut: 0,
     stoneQuarry: 0,
-    stoneyard: 0,
-    library: 0
+    library: 0,
+    storageShed: 0,
   },
   golems: {
     total: 0,

@@ -1,7 +1,10 @@
 //number formatter
 export function nFormatter(num, digits) {
-  if (num < 1){
+  if (num < 10){
     return parseFloat(num.toFixed(2));
+  }
+  else if (num < 100){
+    return parseFloat(num.toFixed(1));
   }
   else if (num < 1000){
     return parseFloat(num.toFixed(0));

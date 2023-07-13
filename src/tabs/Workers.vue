@@ -2,7 +2,7 @@
 import { golemTypes } from '../scripts/foundry';
 import { runtime } from '../scripts/gameCore.js';
 import { resources } from '../scripts/resources.js';
-import { workerAmount, setWorkerAmount, hire } from '../scripts/workers.js'
+import { setHireAmount, amountToHire, hire, fire } from '../scripts/workers.js'
 
 </script>
 <template>
@@ -34,9 +34,18 @@ import { workerAmount, setWorkerAmount, hire } from '../scripts/workers.js'
   <div class="card" v-if="r.worker">
     <div class="card-content">
       
-      <h2 class="card-title">
-        {{ r.worker }}s
-      </h2>
+      <table style="width: 100%">
+        <tr>
+          <td>
+            <h2 class="card-title">
+              {{ r.worker }}s
+            </h2>
+          </td>
+          <td style="font-size: 16px; text-align:right;">
+             {{ runtime.resources[r.id].hiredWorkers }} / {{ runtime.resources[r.id].maxWorkers }}
+          </td>
+        </tr>
+      </table>
 
         <table style="width: 100%;">
           <tr v-for="g in golemTypes">
@@ -44,13 +53,13 @@ import { workerAmount, setWorkerAmount, hire } from '../scripts/workers.js'
                 {{ g.type }}:
               </td>
               <td style="width: 2.5%;">
-                <button @click="hire(r.id, g.type, false)" style="width: 20px;">-</button>
+                <button @click="fire(r.id, g.type)" style="width: 20px;">-</button>
               </td>
               <td style="width: 45%; text-align: center;">
                 {{ runtime.resources[r.id].workers[g.type] }}
               </td>
               <td style="width: 2.5%;">
-                <button @click="hire(r.id, g.type, true)" style="width: 20px;">+</button>
+                <button @click="hire(r.id, g.type)" style="width: 20px;">+</button>
               </td>
           </tr>
         </table>

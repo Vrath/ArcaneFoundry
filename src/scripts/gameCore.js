@@ -4,6 +4,7 @@ import {ref} from "vue";
 import { initData } from "./initData.js";
 import { buildings } from "./buildings.js"
 import { resources } from "./resources.js";
+import { golemTypes } from "./foundry.js";
 
 export const runtime = ref(structuredClone(initData));
 
@@ -38,38 +39,54 @@ let gameLoop = window.setInterval(function(){
   let rate = delta / 1000
   last = now
   
-  //calculating max workers, resource production, and max storage
+  //calculating golem workpower
   Object.values(resources).forEach(r =>{
-    switch (r.id){
-      case 'mana':
-        // runtime.value.resources.mana.production = Math.ceil(0.1+Math.pow(runtime.value.buildings.manaWell, 1.13))
-
-        runtime.value.resources.mana.max = 10*Math.round(Math.pow(1+runtime.value.buildings.manaTower, 1.23))
-      break;
-      case 'clay':
-        // runtime.value.resources.clay.production = Math.round(Math.pow(runtime.value.buildings.clayDeposits, 1.43))
-        runtime.value.resources.clay.max = 10*Math.round(Math.pow(1+runtime.value.buildings.clayStorage, 1.73))
-      break;
-      default:
-        // runtime.value.resources[r.id].production = Math.round(Math.pow(runtime.value.buildings[r.productionBuilding], 1.43))
-        runtime.value.resources[r.id].max = 10*Math.round(Math.pow(runtime.value.buildings[r.storageBuilding], 1.73))
-      break;
-    }
+    if (r.id != "mana"){
+      runtime.value.resources[r.id].workerPower = 0;
+      Object.values(golemTypes).forEach(g =>{
+        runtime.value.resources[r.id].workerPower += runtime.value.resources[r.id].workers[g.type] * runtime.value.golems[g.type].efficiency;
+      })
+      }
   })
 
-  //adding 
+  //calculating max workers, resource production, and max storage
+
+    //mana
+    let manaUsage = 0;
+    Object.values(golemTypes).forEach(g =>{
+      manaUsage += g.upkeep * runtime.value.golems[g.type].working * runtime.value.golems[g.type].upkeepMultiplier
+    })
+
+    runtime.value.resources.mana.production = runtime.value.buildings.manaWell + 3 - manaUsage;
+    runtime.value.resources.mana.max = 10 * runtime.value.buildings.manaTower + 10;
+
+    //clay
+    runtime.value.resources.clay.maxWorkers = runtime.value.buildings.clayDeposits * 4;
+    runtime.value.resources.clay.production = (runtime.value.buildings.clayDeposits * 0.02 + 0.98) * (runtime.value.resources.clay.workerPower) / resources.clay.gatherLevel;
+    runtime.value.resources.clay.max = 50 * runtime.value.buildings.clayDeposits + 50;
+   
+    //wood
+    runtime.value.resources.wood.maxWorkers = runtime.value.buildings.lumberjacksHut * 4;
+    runtime.value.resources.wood.production = (runtime.value.buildings.lumberjacksHut * 0.02 + 0.98) * (runtime.value.resources.wood.workerPower) / resources.wood.gatherLevel;
+    runtime.value.resources.wood.max = 50 * runtime.value.buildings.lumberjacksHut;
+
+    //stone
+    runtime.value.resources.stone.maxWorkers = runtime.value.buildings.stoneQuarry * 4;
+    runtime.value.resources.stone.production = (runtime.value.buildings.stoneQuarry * 0.02 + 0.98) * (runtime.value.resources.stone.workerPower) / resources.stone.gatherLevel;
+    runtime.value.resources.stone.max = 50 * runtime.value.buildings.stoneQuarry;
+    
+  //produce
   Object.values(runtime.value.resources).forEach(p =>{
     p.amount += p.production*rate;
     if (p.amount > p.max){p.amount = p.max}
   })
 
-
-
-timeToSave -= delta
-if (timeToSave < 0) {
-  timeToSave = SAVE_PERIOD
-  localStorage.setItem("gameSave", JSON.stringify(runtime.value))
-}
+  //save game
+  timeToSave -= delta
+  if (timeToSave < 0) {
+    timeToSave = SAVE_PERIOD
+    localStorage.setItem("gameSave", JSON.stringify(runtime.value))
+  }
 }, 100)
 
 // *** UPGRADES ***

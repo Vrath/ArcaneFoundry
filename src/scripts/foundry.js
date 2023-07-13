@@ -39,16 +39,16 @@ export function getGolemCost(type){
   const resources = [];
   switch (type) {
     case 'clay':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(5 * Math.pow(amount, 1.73))});
-      resources.push({'resource': 'clay', 'amount': Math.ceil(5 * Math.pow(amount, 2.23))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(2 * Math.pow(amount, 1.43))});
+      resources.push({'resource': 'clay', 'amount': Math.ceil(5 * Math.pow(amount, 1.73))});
     break;
     case 'wood':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(10 * Math.pow(amount, 1.73))});
-      resources.push({'resource': 'wood', 'amount': Math.ceil(20 * Math.pow(amount, 2.23))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(3 * Math.pow(amount, 1.43))});
+      resources.push({'resource': 'wood', 'amount': Math.ceil(10 * Math.pow(amount, 1.73))});
     break;
     case 'stone':
-      resources.push({'resource': 'mana', 'amount': Math.ceil(15 * Math.pow(amount, 1.73))});
-      resources.push({'resource': 'stone', 'amount': Math.ceil(35 * Math.pow(amount, 2.23))});
+      resources.push({'resource': 'mana', 'amount': Math.ceil(4 * Math.pow(amount, 1.43))});
+      resources.push({'resource': 'stone', 'amount': Math.ceil(15 * Math.pow(amount, 1.73))});
     break;
   }
   return resources;

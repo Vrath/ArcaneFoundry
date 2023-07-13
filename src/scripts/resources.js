@@ -4,41 +4,36 @@ export const resources = {
   mana: {
     id: "mana",
     name: "mana",
-    storageBuilding: "manaTower",
-    productionBuilding: "manaWell",
+    building: null,
     worker: null,
     gatherLevel: null
   },
   clay: {
     id: "clay",
     name: "clay",
-    storageBuilding: "clayStorage",
-    productionBuilding: "clayProduction",
+    building: "clayDeposits",
     worker: "Clay digger",
-    gatherLevel: 10
+    gatherLevel: 5
   },
   wood: {
     id: "wood",
     name: "wood",
-    storageBuilding: "woodShed",
-    productionBuilding: "lumberjacksHut",
+    building: "lumberjacksHut",
     worker: "Lumberjack",
-    gatherLevel: 20
+    gatherLevel: 10
   },
   stone: {
     id: "stone",
     name: "stone",
-    storageBuilding: "stoneyard",
-    productionBuilding: "stoneQuarry",
+    building: "stoneQuarry",
     worker: "Stone miner",
-    gatherLevel: 30
+    gatherLevel: 15
   },
   research: {
     id: "research",
     name: "research",
-    storageBuilding: '',
-    productionBuilding: "library",
+    building: "library",
     worker: "Researcher",
-    gatherLevel: 50
+    gatherLevel: 25
   }
 }

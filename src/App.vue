@@ -1,8 +1,9 @@
 <script setup>
-import { markRaw, ref } from 'vue'
+import {markRaw, ref} from 'vue'
 import {runtime, conjureClay, reset} from './scripts/gameCore.js'
 import {nFormatter} from "./scripts/util.js";
 import {resources} from "./scripts/resources.js"
+import {setHireAmount} from "./scripts/workers.js"
 
 
 import Buildings from './tabs/Buildings.vue'
@@ -48,10 +49,10 @@ const nav = markRaw([
 
       <div class="multipliers" v-show="currentTab == 'Workers'">
         <span>Multiplier:</span>
-        <button @click="setWorkerAmount(1)">x1</button>
-        <button @click="setWorkerAmount(5)">x5</button>
-        <button @click="setWorkerAmount(25)">x25</button>
-        <button @click="setWorkerAmount(100)">x100</button>
+        <button @click="setHireAmount(1)">x1</button>
+        <button @click="setHireAmount(5)">x5</button>
+        <button @click="setHireAmount(25)">x25</button>
+        <button @click="setHireAmount(100)">x100</button>
       </div>
 
     </div>
