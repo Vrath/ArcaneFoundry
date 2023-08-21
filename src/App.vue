@@ -9,6 +9,7 @@ import {setHireAmount} from "./scripts/workers.js"
 import Buildings from './tabs/Buildings.vue'
 import Foundry from './tabs/Foundry.vue'
 import Workers from './tabs/Workers.vue'
+import Research from './tabs/Research.vue'
 
 // import Quests from './tabs/Quests.vue'
 // import Settings from './tabs/Settings.vue' 
@@ -19,7 +20,8 @@ const currentTab = "Buildings";
 const nav = markRaw([
   {name: "Buildings", component: Buildings},
   {name: "Foundry", component: Foundry},
-  {name: "Workers", component: Workers}
+  {name: "Workers", component: Workers},
+  {name: "Research", component: Research}
   // ...
   // {name: "Quests", component: Quests},
   // {name: "Settings", component: Settings}
@@ -36,10 +38,11 @@ const nav = markRaw([
       </h1>
     </div>
     <div id="sidebarMenu">
-        <a v-for="tab in nav" :key="tab.name" @click="currentTab = tab.name" 
-      :class="currentTab == tab.name ? 'active' : ''">
-        {{ tab.name }}
-      </a>
+      <template v-for="tab in nav" :key="tab.name">
+        <a @click="currentTab = tab.name" :class="currentTab == tab.name ? 'active' : ''"> <!-- v-if="runtime.unlocks.tabs[tab.name] == true" -->
+          {{ tab.name }}
+        </a>
+      </template>
       <a @click="reset();">Reset</a>
     </div>
   </div>

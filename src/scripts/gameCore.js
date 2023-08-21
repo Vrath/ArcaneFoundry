@@ -44,7 +44,7 @@ let gameLoop = window.setInterval(function(){
     if (r.id != "mana"){
       runtime.value.resources[r.id].workerPower = 0;
       Object.values(golemTypes).forEach(g =>{
-        runtime.value.resources[r.id].workerPower += runtime.value.resources[r.id].workers[g.type] * runtime.value.golems[g.type].efficiency;
+        runtime.value.resources[r.id].workerPower += runtime.value.resources[r.id].workers[g.type] * runtime.value.golems[g.type].efficiency * golemTypes[g.type].power;
       })
       }
   })
@@ -76,9 +76,11 @@ let gameLoop = window.setInterval(function(){
     runtime.value.resources.stone.max = 50 * runtime.value.buildings.stoneQuarry;
     
   //produce
-  Object.values(runtime.value.resources).forEach(p =>{
-    p.amount += p.production*rate;
-    if (p.amount > p.max){p.amount = p.max}
+  Object.values(runtime.value.resources).forEach(r =>{
+    if (0 <= runtime.value.resources.mana.amount + runtime.value.resources.mana.production * rate){
+      r.amount += r.production * rate
+    }
+    if (r.amount > r.max){r.amount = r.max}
   })
 
   //save game

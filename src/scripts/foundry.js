@@ -8,21 +8,21 @@ export const golemTypes = {
     displayName: "Clay Golem",
     desc: "Clay golems are easy to make and dexterous, but also very fragile.",
     upkeep: 1,
-    power: 5
+    power: 1
   },
   wood: {
     type: "wood",
     displayName: "Wood Golem",
     desc: "Wood golems are well balanced between their toughness, strength, and ease of control.",
     upkeep: 1.5,
-    power: 8
+    power: 2
   },
   stone: {
     type: "stone",
     displayName: "Stone Golem",
     desc: "Stone golems are tough and sturdy, but pretty slow.",
     upkeep: 2,
-    power: 12
+    power: 5
   }
 }
 

@@ -155,7 +155,7 @@ export function getBuildingUpgradeCost(building){
     case 'stoneQuarry':
       {resources.push({
         'resource': 'clay', 
-        'amount': Math.ceil(Math.pow(level, 1.93))*10 + 150
+        'amount': Math.ceil(Math.pow(level, 1.93))*10 + 140
       })}
       {{resources.push({
         'resource': 'wood', 
@@ -170,11 +170,11 @@ export function getBuildingUpgradeCost(building){
     case 'storageShed':
       {resources.push({
         'resource': 'clay', 
-        'amount': Math.ceil(Math.pow(level, 1.63))*10 + 190
+        'amount': Math.ceil(Math.pow(level, 1.63))*10 + 90
       })}
       {{resources.push({
         'resource': 'wood', 
-        'amount': Math.ceil(Math.pow(level, 1.58))*10 + 110
+        'amount': Math.ceil(Math.pow(level, 1.58))*10 + 40
       })}}
       if (level>1){{resources.push({
         'resource': 'stone', 

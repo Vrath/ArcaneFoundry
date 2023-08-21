@@ -13,27 +13,27 @@ export const resources = {
     name: "clay",
     building: "clayDeposits",
     worker: "Clay digger",
-    gatherLevel: 5
+    gatherLevel: 2
   },
   wood: {
     id: "wood",
     name: "wood",
     building: "lumberjacksHut",
     worker: "Lumberjack",
-    gatherLevel: 10
+    gatherLevel: 3
   },
   stone: {
     id: "stone",
     name: "stone",
     building: "stoneQuarry",
     worker: "Stone miner",
-    gatherLevel: 15
+    gatherLevel: 5
   },
   research: {
     id: "research",
     name: "research",
     building: "library",
     worker: "Researcher",
-    gatherLevel: 25
+    gatherLevel: 10
   }
 }
