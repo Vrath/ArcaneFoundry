@@ -14,7 +14,6 @@ import Research from './tabs/Research.vue'
 // import Quests from './tabs/Quests.vue'
 // import Settings from './tabs/Settings.vue' 
 
-
 const currentTab = "Buildings";
 
 const nav = markRaw([
@@ -26,6 +25,7 @@ const nav = markRaw([
   // {name: "Quests", component: Quests},
   // {name: "Settings", component: Settings}
 ])
+
 
 
 </script>
@@ -50,6 +50,8 @@ const nav = markRaw([
   <div id="main">
     <div class="topbar">
 
+      
+
       <div class="multipliers" v-show="currentTab == 'Workers'">
         <span>Multiplier:</span>
         <button @click="setHireAmount(1)">x1</button>
@@ -59,7 +61,7 @@ const nav = markRaw([
       </div>
 
     </div>
-    <div class="tabContent" style="width=100%;" v-for="tab in nav" :key="tab.name" v-show="currentTab == tab.name">
+    <div class="tabContent" :id="'tab' + tab.name" style="width=100%;" v-for="tab in nav" :key="tab.name" v-show="currentTab == tab.name">
       <component :is="tab.component"></component>
     </div>
   </div>
@@ -91,6 +93,9 @@ const nav = markRaw([
     <button @click="conjureClay()">
       Conjure clay<br>(cost: 1 mana)
     </button>
+
+   
+    
   </div>
 </template>
 

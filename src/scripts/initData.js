@@ -89,6 +89,9 @@ export const initData = {
       efficiency: 1,
       upkeepMultiplier: 1
     },
+  },
+  research: {
+    
   }
 };
 

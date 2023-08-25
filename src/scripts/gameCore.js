@@ -2,7 +2,6 @@
 
 import {ref} from "vue";
 import { initData } from "./initData.js";
-import { buildings } from "./buildings.js"
 import { resources } from "./resources.js";
 import { golemTypes } from "./foundry.js";
 
