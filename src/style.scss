@@ -336,13 +336,13 @@ img {
   // left: 50%;
   // transform: translate(-50%, -50%);
   .available{
-    border-color: yellow;
+    border-color: red;
   }
   .ready{
-    border-color: lime;
+    border-color: yellow;
   }
   .in-progress{
-    border-color: cyan;
+    border-color: lime;
   }
   .finished{
     border-color: green;
