@@ -1,81 +1,95 @@
 <script setup> 
 
 import {research} from '../scripts/research.js'
+import { VNetworkGraph } from "v-network-graph"
+import * as vNG from "v-network-graph"
+import "v-network-graph/lib/style.css"
 
-//draggable
-document.addEventListener('DOMContentLoaded', function () {
-    const ele = document.getElementById('draggable');
+const edges = {
+  1: { source: "manaStorage", target: "manaProduction" },
+  2: { source: "stoneMining", target: "coalMining" },
+  3: { source: "woodGolems", target: "stoneGolems" },
+  4: { source: "stoneMining", target: "stoneGolems" },
+  5: { source: "extraStorage", target: "clayProf" },
+  6: { source: "extraStorage", target: "logistics1"},
+  7: { source: "stoneMining", target: "logistics1"},
+  8: { source: "woodGolems", target: "woodProf"},
+  9: { source: "clayProf", target: "woodProf"},
+  10: { source: "coalMining", target: "manaGenerator"},
+  11: { source: "manaProduction", target: "manaGenerator"},
+  12: { source: "stoneGolems", target: "expeditions"},
+  13: { source: "coalMining", target: "copperMining"},
+  14: { source: "coalMining", target: "forge"},
+  15: { source: "woodProf", target: "stoneProf"},
+  16: { source: "stoneGolems", target: "stoneProf"},
+  17: { source: "logistics1", target: "expeditions"},
+  18: { source: "manaGenerator", target: "spellCasting"},
+  19: { source: "forge", target: "oreProcessing"},
+  20: { source: "copperMining", target: "oreProcessing"},
+  21: { source: "copperMining", target: "ironMining"},
+  22: { source: "logistics1", target: "logistics2"},
+  23: { source: "copperMining", target: "logistics2"},
+  24: { source: "forge", target: "logistics2"},
+  25: { source: "forge", target: "ironMining"},
+  26: { source: "manaGenerator", target: "spellcasting"},
+  27: { source: "stoneProf", target: "copperGolems"},
+  28: { source: "spellcasting", target: "alchemicalCentrifuge"},
+  29: { source: "spellcasting", target: "alchemicalRefining"},
+  30: { source: "oreProcessing", target: "alchemicalRefining"},
+  31: { source: "oreProcessing", target: "steel"},
+  32: { source: "ironMining", target: "steel"},
+  33: { source: "ironMining", target: "galenaMining"},
+  34: { source: "copperMining", target: "copperGolems"},
+  35: { source: "copperGolems", target: "copperProf"},
+}
 
-    let pos = { top: 0, left: 0, x: 0, y: 0 };
-
-    const mouseDownHandler = function (e) {
-        ele.style.cursor = 'grabbing';
-        ele.style.userSelect = 'none';
-
-        pos = {
-            left: ele.scrollLeft,
-            top: ele.scrollTop,
-            // Get the current mouse position
-            x: e.clientX,
-            y: e.clientY,
-        };
-
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
-    };
-
-    const mouseMoveHandler = function (e) {
-        // How far the mouse has been moved
-        const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
-
-        // Scroll the element
-        ele.scrollTop = pos.top - dy;
-        ele.scrollLeft = pos.left - dx;
-    };
-
-    const mouseUpHandler = function () {
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-    };
-
-    // Attach the handler
-    ele.addEventListener('mousedown', mouseDownHandler);
-});
-//get coords
-// $(function () {
-//     var c = document.getElementById('research-tree');
-
-//     c.width = $(document).width();
-//     c.height = $(document).height();
-
-//     $('#research-tree').mousemove(function (e) {
-
-//         var x, y;
-
-//         x = e.pageX - 185;
-//         y = e.pageY - 40;
-
-//         $('#x').html(x);
-//         $('#y').html(y);
-
-//     });
-// });
-
+const configs = vNG.defineConfigs({
+    view: {
+      panEnabled: true,
+      zoomEnabled: true,
+    //   autoPanAndZoomOnLoad: "center-zero",
+      autoPanAndZoomOnLoad: "fit-content",
+      minZoomLevel: 0.25,
+      maxZoomLevel: 0.75,
+    },
+    node: {
+      draggable: false,
+    },
+    edge: {
+        normal: {
+            color: "#666666",
+        },
+        hover: {
+            color: "#666666",
+        }
+    }
+})
 
 </script>
 <template>
-<div id="draggable">
-  <div id="research">
-    <!-- <canvas id="research-canvas" height="920" width="2200"></canvas> -->
-    <div id="research-tree">
-        <div v-for="tier in research" class="research-column">
-            <button v-for="r in tier" class="research-btn" :style="`top: ${r.y}%;`">
-                {{ r.name }}
-            </button>
-        </div>
-    </div>
-  </div>
+<div id="research">
+    <v-network-graph
+    :zoom-level="0.5"
+    :nodes="research.nodes"
+    :edges="edges"
+    :layouts="research"
+    :configs="configs"
+    >
+      <template #override-node="{ nodeId }">
+
+        <foreignObject x="-110" y="-40" width="220" height="80" >
+            <body xmlns="http://www.w3.org/1999/xhtml" >
+              <button class="research-btn">
+                {{ research.nodes[nodeId].name }}
+              </button>
+            </body>     
+          </foreignObject >
+      </template>
+
+      <template #override-node-label="{ }">
+        .
+      </template>
+    </v-network-graph>
 </div>
 </template>
 <style lang="css">

@@ -7,6 +7,11 @@
   "resolved" "https://registry.npmjs.org/@babel/parser/-/parser-7.22.5.tgz"
   "version" "7.22.5"
 
+"@dash14/svg-pan-zoom@^3.6.9":
+  "integrity" "sha512-6u+KTQec+9+3bRdk2mReix8AGsp2mB40cw0iYfQQzo22QBkeCNpXl2amnfwQzK7xB9oH/62Wvf2z7l6l2w+csA=="
+  "resolved" "https://registry.npmjs.org/@dash14/svg-pan-zoom/-/svg-pan-zoom-3.6.9.tgz"
+  "version" "3.6.9"
+
 "@esbuild/win32-x64@0.18.20":
   "integrity" "sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ=="
   "resolved" "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
@@ -205,12 +210,22 @@
   "resolved" "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz"
   "version" "2.0.2"
 
+"lodash-es@^4.17.21":
+  "integrity" "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
+  "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
+  "version" "4.17.21"
+
 "magic-string@^0.30.0":
   "integrity" "sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ=="
   "resolved" "https://registry.npmjs.org/magic-string/-/magic-string-0.30.0.tgz"
   "version" "0.30.0"
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.13"
+
+"mitt@^3.0.1":
+  "integrity" "sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw=="
+  "resolved" "https://registry.npmjs.org/mitt/-/mitt-3.0.1.tgz"
+  "version" "3.0.1"
 
 "nanoid@^3.3.6":
   "integrity" "sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA=="
@@ -266,6 +281,15 @@
     "commander" "^2.20.0"
     "source-map-support" "~0.5.20"
 
+"v-network-graph@^0.9.7":
+  "integrity" "sha512-51gQroJf+tjdeEJFePPkxbLdcv7AfqT1yW2pa1rLxphC3z/tII3O8h09YNex8M3eugMDyf+qOG3c7shwfgN19Q=="
+  "resolved" "https://registry.npmjs.org/v-network-graph/-/v-network-graph-0.9.7.tgz"
+  "version" "0.9.7"
+  dependencies:
+    "@dash14/svg-pan-zoom" "^3.6.9"
+    "lodash-es" "^4.17.21"
+    "mitt" "^3.0.1"
+
 "vite@^4.0.0", "vite@^4.3.9":
   "integrity" "sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA=="
   "resolved" "https://registry.npmjs.org/vite/-/vite-4.4.9.tgz"
@@ -277,7 +301,7 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
-"vue@^3.2.25", "vue@^3.2.47", "vue@3.3.4":
+"vue@^3.2.25", "vue@^3.2.45", "vue@^3.2.47", "vue@3.3.4":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"

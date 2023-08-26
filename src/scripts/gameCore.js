@@ -23,7 +23,7 @@ export function reset(confirmReset){
 export function conjureClay(){
   if (runtime.value.resources.mana.amount >= 1 && runtime.value.resources.clay.amount < runtime.value.resources.clay.max){
   runtime.value.resources.mana.amount -= 1;
-  runtime.value.resources.clay.amount += 1;
+  runtime.value.resources.clay.amount += 3;
   }
 }
 

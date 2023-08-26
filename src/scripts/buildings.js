@@ -133,7 +133,7 @@ export function getBuildingUpgradeCost(building){
       })}}
       if (level>1){{resources.push({
         'resource': 'stone', 
-        'amount': Math.ceil(Math.pow(level-2, 1.63))*10
+        'amount': Math.ceil(Math.pow(level-1, 1.63))*10
       })}}
     break;
 
